@@ -31,6 +31,7 @@ class Restaurant
     public function __construct()
     {
         $this->ville_id = new ArrayCollection();
+        $this->setCreatedAt(new \DateTime());
     }
 
     public function getId(): ?int
