@@ -25,12 +25,14 @@ class Restaurant
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $created_at = null;
 
-    #[ORM\OneToMany(mappedBy: 'restaurant', targetEntity: Ville::class)]
-    private Collection $ville_id;
+    #[ORM\ManyToOne(inversedBy: 'restaurants')]
+    private ?Ville $ville = null;
+
+    #[ORM\ManyToOne(inversedBy: 'restaurants')]
+    private ?User $user = null;
 
     public function __construct()
     {
-        $this->ville_id = new ArrayCollection();
         $this->setCreatedAt(new \DateTime());
     }
 
@@ -75,33 +77,27 @@ class Restaurant
         return $this;
     }
 
-    /**
-     * @return Collection<int, Ville>
-     */
-    public function getVilleId(): Collection
+    public function getVille(): ?Ville
     {
-        return $this->ville_id;
+        return $this->ville;
     }
 
-    public function addVilleId(Ville $villeId): static
+    public function setVille(?Ville $ville): static
     {
-        if (!$this->ville_id->contains($villeId)) {
-            $this->ville_id->add($villeId);
-            $villeId->setRestaurant($this);
-        }
+        $this->ville = $ville;
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
 
         return $this;
     }
 
-    public function removeVilleId(Ville $villeId): static
-    {
-        if ($this->ville_id->removeElement($villeId)) {
-            // set the owning side to null (unless already changed)
-            if ($villeId->getRestaurant() === $this) {
-                $villeId->setRestaurant(null);
-            }
-        }
-
-        return $this;
-    }
 }
