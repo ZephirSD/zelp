@@ -1,0 +1,88 @@
+:root{
+    --padding_section: 15px;
+    --montserrat: 'Montserrat', sans-serif;
+}
+
+body{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    background-color: #f7f7f7;
+    font-family: var(--montserrat);
+}
+
+header{
+    width: 100%;
+    padding: 15px 0px;
+    background-color: #3f96cd;
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+nav ul{
+    padding: 0; 
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li{
+    list-style-type: none;
+    color: white;
+    padding: 0 10px;
+    font-family: var(--montserrat);
+}
+
+nav ul li a{
+    text-decoration: none;
+    color: white;
+    font-size: 17px;
+}
+
+section.grid_restaurant{
+    width: calc(100% - (var(--padding_section) * 2));
+    padding: 0px (var(--padding_section) * 2);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 10px;
+}
+
+a.button_ajout{
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+    padding: 5px 10px;
+    background-color: #3f96cd;
+    color: white;
+    border-radius: 10px;
+    font-size: 15px;
+    text-decoration: none;
+    position: absolute;
+    top: 50px;
+    right: 10px;
+    margin-top: 15px;
+}
+
+div.case_restaurant a{
+    position: relative;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: black;
+    text-decoration: none;
+}
+
+div.case_restaurant{
+    width: 200px;
+    height: 200px;
+    background-color: blueviolet;
+    border-radius: 20px;
+}
+
+div.case_restaurant div{
+    font-size: 18px;
+}
+

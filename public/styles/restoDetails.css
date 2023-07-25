@@ -1,0 +1,48 @@
+div.wrapper_resto{
+	width: 100%;
+	display: grid;
+	grid-template-columns: repeat(2,1fr);
+	margin-top: 10vh;
+}
+
+.product-info h2{
+	font-size: 1.9rem;
+}
+
+.case_product{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.product-shot{
+	width: 450px;
+	height: 450px;
+	overflow: hidden;
+}
+
+.product-shot img{
+	object-fit: cover;
+	object-position: center;
+	
+}
+
+.titre_form_resto{
+	margin-top: 35px;
+	text-align: center;
+}
+
+.form_suppri{
+	position: absolute;
+	top: 55px;
+	right: 10px;
+}
+
+.btn_suppr_resto{
+    padding: 7px 10px;
+    background-color: #3f96cd;
+    color: white;
+    border-radius: 20px;
+    font-size: 14px;
+    margin-top: 15px;
+}
