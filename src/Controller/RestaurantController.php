@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Restaurant;
 use App\Form\RestaurantType;
 use App\Repository\RestaurantRepository;
+use App\Repository\VilleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -30,10 +31,9 @@ class RestaurantController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // dd($form->getData());
+            $restaurant->setVille($form->get('ville')->getData());
             $entityManager->persist($restaurant);
             $entityManager->flush();
-
             return $this->redirectToRoute('app_restaurant_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -44,10 +44,11 @@ class RestaurantController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_restaurant_show', methods: ['GET'])]
-    public function show(Restaurant $restaurant): Response
+    public function show(Restaurant $restaurant, VilleRepository $villeRepository ): Response
     {
         return $this->render('restaurant/show.html.twig', [
             'restaurant' => $restaurant,
+            'ville' => $villeRepository->findNameVille($restaurant->getVille())
         ]);
     }
 
