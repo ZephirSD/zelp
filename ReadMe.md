@@ -78,4 +78,4 @@ Nous avons deux utilsateurs de tests avec comme rôle `ROLE_USER` (pour le clien
 - [ ] Réalisation du style pour les Avis
 - [ ] Mise en place du système de commmentaire pour chaque restaurant
 - [ ] Création du responsive pour le site
-- [ ] Résoudre le problème de `ville = null` lors de l'enregistrement d'un restaurant
+- [x] Résoudre le problème de `ville = null` lors de l'enregistrement d'un restaurant
