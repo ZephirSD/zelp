@@ -31,9 +31,17 @@ class Restaurant
     #[ORM\ManyToOne(inversedBy: 'restaurants')]
     private ?User $user = null;
 
+    #[ORM\OneToMany(mappedBy: 'restaurant', targetEntity: Avis::class)]
+    private Collection $avis;
+
+    #[ORM\OneToMany(mappedBy: 'restaurant', targetEntity: RestaurantPicture::class)]
+    private Collection $restaurantPictures;
+
     public function __construct()
     {
         $this->setCreatedAt(new \DateTime());
+        $this->avis = new ArrayCollection();
+        $this->restaurantPictures = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -96,6 +104,66 @@ class Restaurant
     public function setUser(?User $user): static
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Avis>
+     */
+    public function getAvis(): Collection
+    {
+        return $this->avis;
+    }
+
+    public function addAvi(Avis $avi): static
+    {
+        if (!$this->avis->contains($avi)) {
+            $this->avis->add($avi);
+            $avi->setRestaurant($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAvi(Avis $avi): static
+    {
+        if ($this->avis->removeElement($avi)) {
+            // set the owning side to null (unless already changed)
+            if ($avi->getRestaurant() === $this) {
+                $avi->setRestaurant(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, RestaurantPicture>
+     */
+    public function getRestaurantPictures(): Collection
+    {
+        return $this->restaurantPictures;
+    }
+
+    public function addRestaurantPicture(RestaurantPicture $restaurantPicture): static
+    {
+        if (!$this->restaurantPictures->contains($restaurantPicture)) {
+            $this->restaurantPictures->add($restaurantPicture);
+            $restaurantPicture->setRestaurant($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRestaurantPicture(RestaurantPicture $restaurantPicture): static
+    {
+        if ($this->restaurantPictures->removeElement($restaurantPicture)) {
+            // set the owning side to null (unless already changed)
+            if ($restaurantPicture->getRestaurant() === $this) {
+                $restaurantPicture->setRestaurant(null);
+            }
+        }
 
         return $this;
     }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:8889
--- Généré le : mar. 25 juil. 2023 à 10:17
+-- Généré le : mar. 25 juil. 2023 à 11:16
 -- Version du serveur : 5.7.39
 -- Version de PHP : 8.2.0
 
@@ -30,6 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `avis` (
   `id` int(11) NOT NULL,
   `avis_id` int(11) DEFAULT NULL,
+  `restaurant_id` int(11) DEFAULT NULL,
   `message` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `rating` double DEFAULT NULL,
   `created_at` datetime NOT NULL
@@ -56,7 +57,8 @@ INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_
 ('DoctrineMigrations\\Version20230724053342', '2023-07-24 05:33:50', 52),
 ('DoctrineMigrations\\Version20230724054122', '2023-07-24 05:41:29', 47),
 ('DoctrineMigrations\\Version20230725070059', '2023-07-25 07:01:10', 48),
-('DoctrineMigrations\\Version20230725072926', '2023-07-25 07:29:37', 53);
+('DoctrineMigrations\\Version20230725072926', '2023-07-25 07:29:37', 53),
+('DoctrineMigrations\\Version20230725111527', '2023-07-25 11:15:34', 77);
 
 -- --------------------------------------------------------
 
@@ -105,6 +107,7 @@ INSERT INTO `restaurant` (`id`, `ville_id`, `user_id`, `name`, `description`, `c
 
 CREATE TABLE `restaurant_picture` (
   `id` int(11) NOT NULL,
+  `restaurant_id` int(11) DEFAULT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `file` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -196,7 +199,8 @@ INSERT INTO `ville` (`id`, `name`, `code_postal`) VALUES
 --
 ALTER TABLE `avis`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `IDX_8F91ABF0197E709F` (`avis_id`);
+  ADD KEY `IDX_8F91ABF0197E709F` (`avis_id`),
+  ADD KEY `IDX_8F91ABF0B1E7706E` (`restaurant_id`);
 
 --
 -- Index pour la table `doctrine_migration_versions`
@@ -225,7 +229,8 @@ ALTER TABLE `restaurant`
 -- Index pour la table `restaurant_picture`
 --
 ALTER TABLE `restaurant_picture`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `IDX_DC9013FCB1E7706E` (`restaurant_id`);
 
 --
 -- Index pour la table `user`
@@ -288,7 +293,8 @@ ALTER TABLE `ville`
 -- Contraintes pour la table `avis`
 --
 ALTER TABLE `avis`
-  ADD CONSTRAINT `FK_8F91ABF0197E709F` FOREIGN KEY (`avis_id`) REFERENCES `avis` (`id`);
+  ADD CONSTRAINT `FK_8F91ABF0197E709F` FOREIGN KEY (`avis_id`) REFERENCES `avis` (`id`),
+  ADD CONSTRAINT `FK_8F91ABF0B1E7706E` FOREIGN KEY (`restaurant_id`) REFERENCES `restaurant` (`id`);
 
 --
 -- Contraintes pour la table `restaurant`
@@ -296,6 +302,12 @@ ALTER TABLE `avis`
 ALTER TABLE `restaurant`
   ADD CONSTRAINT `FK_EB95123FA73F0036` FOREIGN KEY (`ville_id`) REFERENCES `ville` (`id`),
   ADD CONSTRAINT `FK_EB95123FA76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
+
+--
+-- Contraintes pour la table `restaurant_picture`
+--
+ALTER TABLE `restaurant_picture`
+  ADD CONSTRAINT `FK_DC9013FCB1E7706E` FOREIGN KEY (`restaurant_id`) REFERENCES `restaurant` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

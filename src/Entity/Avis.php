@@ -31,6 +31,9 @@ class Avis
     #[ORM\OneToMany(mappedBy: 'avis', targetEntity: self::class)]
     private Collection $avis_id;
 
+    #[ORM\ManyToOne(inversedBy: 'avis')]
+    private ?Restaurant $restaurant = null;
+
     public function __construct()
     {
         $this->avis_id = new ArrayCollection();
@@ -115,6 +118,18 @@ class Avis
                 $avisId->setAvis(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getRestaurant(): ?Restaurant
+    {
+        return $this->restaurant;
+    }
+
+    public function setRestaurant(?Restaurant $restaurant): static
+    {
+        $this->restaurant = $restaurant;
 
         return $this;
     }

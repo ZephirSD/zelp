@@ -19,6 +19,9 @@ class RestaurantPicture
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $file = null;
 
+    #[ORM\ManyToOne(inversedBy: 'restaurantPictures')]
+    private ?Restaurant $restaurant = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -44,6 +47,18 @@ class RestaurantPicture
     public function setFile(?string $file): static
     {
         $this->file = $file;
+
+        return $this;
+    }
+
+    public function getRestaurant(): ?Restaurant
+    {
+        return $this->restaurant;
+    }
+
+    public function setRestaurant(?Restaurant $restaurant): static
+    {
+        $this->restaurant = $restaurant;
 
         return $this;
     }
