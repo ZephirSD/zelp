@@ -1,21 +1,73 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Inscription{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
-
-    {{ form_errors(registrationForm) }}
-
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Mot de passe'
-        }) }}
-        {{ form_row(registrationForm.firstname, { label: 'Nom'}) }}
-        {{ form_row(registrationForm.lastname, { label: 'Prénom'}) }}
-        {{ form_row(registrationForm.agreeTerms) }}
-
-        <button type="submit" class="btn">Inscrire</button>
-    {{ form_end(registrationForm) }}
+        <div class="limiter">
+        <div class="container-login100">
+            <div class="wrap-login100">
+                <a href="{{ path('app_home') }}" class="btn_retour">Retour</a>
+                <div class="login100-pic js-tilt" data-tilt>
+                    <img src="{{ asset('images/img-01.webp') }}" alt="IMG">
+                </div>
+                {{ form_start(registrationForm, { 'attr': {'class': 'login100-form validate-form'} }) }}
+                    <span class="login100-form-title">
+                        Inscription
+                    </span>
+                    <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                        {{ form_row(registrationForm.email, { 'attr': {'class': 'input100'} }) }}
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fa fa-envelope" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <div class="wrap-input100 validate-input" data-validate="Password is required">
+                        {{ form_row(registrationForm.plainPassword, {label:"Mot de passe", 'attr': {'class': 'input100'} }) }}
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fa fa-lock" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <div class="wrap-input100 validate-input">
+                        {{ form_row(registrationForm.firstname, { label: 'Nom', 'attr': {'class': 'input100'} }) }}
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fa fa-lock" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <div class="wrap-input100 validate-input">
+                        {{ form_row(registrationForm.lastname, { label: 'Prenom', 'attr': {'class': 'input100'} }) }}
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fa fa-lock" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <div class="wrap-input100 validate-input">
+                        {{ form_row(registrationForm.roles, { label: 'Statut', 'attr': {'class': 'input100'} }) }}
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fa fa-lock" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <div class="wrap-input100 validate-input">
+                        {{ form_row(registrationForm.agreeTerms, { label: 'Accepter les conditions' }) }}
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fa fa-lock" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <div>
+                        <input type="hidden" name="_csrf_token"
+                        value="{{ csrf_token('authenticate') }}"
+                        >
+                    </div>
+                    <div class="container-login100-form-btn">
+                        <button class="login100-form-btn" type="submit">
+                            S'Inscrire
+                        </button>
+                    </div>
+                {{ form_end(registrationForm) }}
+            </div>
+        </div>
+    </div>
 {% endblock %}
