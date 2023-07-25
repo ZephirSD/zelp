@@ -1,11 +1,53 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Restaurant index{% endblock %}
+{% block title %}Listes de vos Restaurants{% endblock %}
 
 {% block body %}
-    <h1>Restaurant index</h1>
-
-    <table class="table">
+    {{ include('component/header.html.twig') }}
+    <h1>Listes de vos restaurants</h1>
+        <a href="{{ path('app_restaurant_new') }}" class="button_ajout">Ajouter</a> 
+        <section class="grid_restaurant">
+            {% for restaurant in restaurants %}
+            <div class="container page-wrapper">
+                    <div class="page-inner">
+                        <div class="row">
+                            <div class="el-wrapper">
+                                <div class="box-up">
+                                <img class="img" src="" alt="">
+                                <div class="img-info">
+                                    <div class="info-inner">
+                                    <span class="p-name">{{ restaurant.name }}</span>
+                                    <span class="p_note">4/5</span>
+                                    </div>
+                                </div>
+                                </div>
+                                <div class="box-down">
+                                    <div class="h-bg">
+                                        <div class="h-bg-inner"></div>
+                                    </div>
+                                    <a class="cart" href="{{ path('app_restaurant_show', {'id': restaurant.id}) }}">
+                                        <span class="voir_restaurant">
+                                        <span class="txt">Voir le restaurant</span>
+                                        </span>
+                                    </a>
+                                </div> 
+                                <div class="box-down">
+                                    <div class="h-bg">
+                                        <div class="h-bg-inner"></div>
+                                    </div>
+                                    <a class="cart" href="{{ path('app_restaurant_edit', {'id': restaurant.id}) }}">
+                                        <span class="voir_restaurant">
+                                        <span class="txt">Modifier</span>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </section>
+    {# <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
@@ -35,5 +77,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_restaurant_new') }}">Create new</a>
+    <a href="{{ path('app_restaurant_new') }}">Create new</a> #}
 {% endblock %}

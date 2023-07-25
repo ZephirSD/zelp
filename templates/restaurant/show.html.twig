@@ -3,7 +3,30 @@
 {% block title %}Restaurant{% endblock %}
 
 {% block body %}
-    <h1>Restaurant</h1>
+{{ include('component/header.html.twig') }}
+<a href="{{ path('app_home') }}">Retour</a>
+<div class="wrapper_resto">
+	<div class="case_product">
+		<div class="product-wrap">
+			<div class="product-shot">
+				<img src="https://s3-us-west-2.amazonaws.com/hypebeast-wordpress/image/2009/10/smart-magazine-stussy-stock-link-tshirt-3.jpg" alt="" />
+			</div>
+		</div>
+	</div>
+  
+	<div class="col-1-2">
+		<div class="product-info">
+			<h2>{{ restaurant.name }}</h2>
+			<div class="desc">
+				{{ restaurant.description }}
+			</div>
+		</div>
+	</div>
+</div>
+<div>
+    <h1>Avis</h1>
+</div>
+    {# <h1>Restaurant</h1>
 
     <table class="table">
         <tbody>
@@ -28,7 +51,7 @@
 
     <a href="{{ path('app_restaurant_index') }}">back to list</a>
 
-    <a href="{{ path('app_restaurant_edit', {'id': restaurant.id}) }}">edit</a>
+    <a href="{{ path('app_restaurant_edit', {'id': restaurant.id}) }}">edit</a> #}
 
-    {{ include('restaurant/_delete_form.html.twig') }}
+    {# {{ include('restaurant/_delete_form.html.twig') }} #}
 {% endblock %}

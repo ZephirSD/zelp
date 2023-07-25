@@ -1,4 +1,43 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+<div class="limiter">
+        <div class="container-login100">
+            <div class="wrap-login100">
+                <a href="{{ path('app_restaurant_index') }}">Retour</a>
+                <div class="login100-pic js-tilt" data-tilt>
+                    
+                </div>
+                {{ form_start(form, { 'attr': {'class': 'login100-form validate-form'} }) }}
+                    <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                        {{ form_widget(form.name, { 'attr': {'class': 'input100', 'placeholder':'Nom du Restaurant' } }) }}
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fa fa-envelope" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <div class="wrap-input100 validate-input" data-validate="Password is required">
+                        {{ form_widget(form.description, {label: "Description", 'attr': {'class': 'input100', 'placeholder':'Description'} }) }}
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fa fa-lock" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <div class="wrap-input100 validate-input" data-validate="">
+                        {{ form_widget(form.ville, {label: 'Villes', 'attr': {'class': 'input100'} }) }}
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fa fa-lock" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <div>
+                        <input type="hidden" name="_csrf_token"
+                        value="{{ csrf_token('authenticate') }}"
+                        >
+                    </div>
+                    <div class="container-login100-form-btn">
+                        <button class="login100-form-btn">
+                            {{ button_label|default('Enregistrer') }}
+                        </button>
+                    </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
