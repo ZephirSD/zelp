@@ -21,6 +21,15 @@ class RestaurantRepository extends ServiceEntityRepository
         parent::__construct($registry, Restaurant::class);
     }
 
+    public function findRestaurantByIdUser(int $idUser)
+    {
+        $query = $this->createQueryBuilder('u')
+            ->where('u.user_id = :val')
+            ->setParameter('val', $idUser);
+        return $query->getQuery()->getResult();
+    }
+
+
 //    /**
 //     * @return Restaurant[] Returns an array of Restaurant objects
 //     */

@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
+use Symfony\Bundle\SecurityBundle\Security;
 use App\Entity\Restaurant;
 use App\Form\RestaurantType;
 use App\Repository\RestaurantRepository;
+use App\Repository\UserRepository;
 use App\Repository\VilleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -16,21 +18,24 @@ use Symfony\Component\Routing\Annotation\Route;
 class RestaurantController extends AbstractController
 {
     #[Route('/', name: 'app_restaurant_index', methods: ['GET'])]
-    public function index(RestaurantRepository $restaurantRepository): Response
+    public function index(RestaurantRepository $restaurantRepository, UserRepository $userRepository, Request $request): Response
     {
+        ;
         return $this->render('restaurant/index.html.twig', [
+            // 'restaurants' => $restaurantRepository->findRestaurantByIdUser($userRepository->findUserByEmail($request->getSession()->get(Security::LAST_USERNAME))[0]['id']),
             'restaurants' => $restaurantRepository->findAll(),
         ]);
     }
 
     #[Route('/new', name: 'app_restaurant_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, UserRepository $userRepository): Response
     {
         $restaurant = new Restaurant();
         $form = $this->createForm(RestaurantType::class, $restaurant);
         $form->handleRequest($request);
-
+        
         if ($form->isSubmitted() && $form->isValid()) {
+            $restaurant->setUser($userRepository->findUserByEmail($request->getSession()->get(Security::LAST_USERNAME))[0]);
             $restaurant->setVille($form->get('ville')->getData());
             $entityManager->persist($restaurant);
             $entityManager->flush();
