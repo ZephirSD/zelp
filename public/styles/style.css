@@ -1,6 +1,7 @@
 :root{
     --padding_section: 15px;
     --montserrat: 'Montserrat', sans-serif;
+    --padding_case_search: 20vw;
 }
 
 body{
@@ -86,3 +87,25 @@ div.case_restaurant div{
     font-size: 18px;
 }
 
+form#case_search_code{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 0px var(--padding_case_search) * 2;
+}
+
+form#case_search_code div{
+    width: calc(100% - (var(--padding_case_search) * 2));
+    margin-top: 20px;
+}
+
+section.case_avis{
+    width: calc(100% - (15vw * 2) - (25px * 2));
+    margin: 0px 15vw;
+    margin-top: 20px;
+    padding: 10px 25px;
+    background-color: white;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    box-shadow: 8px 10px 15px rgba(112, 112, 112, 0.5);
+}
