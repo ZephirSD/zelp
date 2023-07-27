@@ -2,9 +2,6 @@
         <div class="container-login100">
             <div class="wrap-login100">
                 <a href="{{ path('app_restaurant_index') }}">Retour</a>
-                <div class="login100-pic js-tilt" data-tilt>
-                    
-                </div>
                 {{ form_start(form, { 'attr': {'class': 'login100-form validate-form'} }) }}
                     <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
                         {{ form_widget(form.name, { 'attr': {'class': 'input100', 'placeholder':'Nom du Restaurant' } }) }}
@@ -17,14 +14,14 @@
                         {{ form_widget(form.description, {label: "Description", 'attr': {'class': 'input100', 'placeholder':'Description'} }) }}
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
-                            <i class="fa fa-lock" aria-hidden="true"></i>
+                            <i class="fa-solid fa-file-pen"></i>
                         </span>
                     </div>
                     <div class="wrap-input100 validate-input" data-validate="">
                         {{ form_widget(form.ville, {label: 'Villes', 'attr': {'class': 'input100'} }) }}
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
-                            <i class="fa fa-lock" aria-hidden="true"></i>
+                            <i class="fa-solid fa-city"></i>
                         </span>
                     </div>
                     <div>
