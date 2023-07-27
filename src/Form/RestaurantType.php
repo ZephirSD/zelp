@@ -3,9 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Restaurant;
-// use App\Entity\Ville;
 use Symfony\Component\Form\AbstractType;
-// use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -23,7 +21,6 @@ class RestaurantType extends AbstractType
                 'placeholder' => 'Selectionner la ville'
             ],)
             ->getForm()
-            // ->add('created_at')
         ;
     }
 
