@@ -17,44 +17,26 @@
                     <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
                         {{ form_row(registrationForm.email, { 'attr': {'class': 'input100'} }) }}
                         <span class="focus-input100"></span>
-                        <span class="symbol-input100">
-                            <i class="fa fa-envelope" aria-hidden="true"></i>
-                        </span>
                     </div>
                     <div class="wrap-input100 validate-input" data-validate="Password is required">
                         {{ form_row(registrationForm.plainPassword, {label:"Mot de passe", 'attr': {'class': 'input100'} }) }}
                         <span class="focus-input100"></span>
-                        <span class="symbol-input100">
-                            <i class="fa fa-lock" aria-hidden="true"></i>
-                        </span>
                     </div>
                     <div class="wrap-input100 validate-input">
                         {{ form_row(registrationForm.firstname, { label: 'Nom', 'attr': {'class': 'input100'} }) }}
                         <span class="focus-input100"></span>
-                        <span class="symbol-input100">
-                            <i class="fa fa-lock" aria-hidden="true"></i>
-                        </span>
                     </div>
                     <div class="wrap-input100 validate-input">
                         {{ form_row(registrationForm.lastname, { label: 'Prenom', 'attr': {'class': 'input100'} }) }}
                         <span class="focus-input100"></span>
-                        <span class="symbol-input100">
-                            <i class="fa fa-lock" aria-hidden="true"></i>
-                        </span>
                     </div>
                     <div class="wrap-input100 validate-input">
                         {{ form_row(registrationForm.roles, { label: 'Statut', 'attr': {'class': 'input100'} }) }}
                         <span class="focus-input100"></span>
-                        <span class="symbol-input100">
-                            <i class="fa fa-lock" aria-hidden="true"></i>
-                        </span>
                     </div>
                     <div class="wrap-input100 validate-input">
                         {{ form_row(registrationForm.agreeTerms, { label: 'Accepter les conditions' }) }}
                         <span class="focus-input100"></span>
-                        <span class="symbol-input100">
-                            <i class="fa fa-lock" aria-hidden="true"></i>
-                        </span>
                     </div>
                     <div>
                         <input type="hidden" name="_csrf_token"
