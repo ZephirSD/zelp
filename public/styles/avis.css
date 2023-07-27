@@ -1,0 +1,89 @@
+form#form_avis {
+    display: flex;
+    flex-direction: column;
+    padding: 0px 15vw;
+}
+  
+label.rating, label.comment_label {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+select#rating, textarea#comment {
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+textarea#comment {
+    resize: vertical;
+}
+
+div.case_btn_avis{
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+}
+
+button.btn_avis {
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #3f96cd;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: 0.3s ease-in-out all;
+}
+
+button.btn_avis:hover {
+    background-color: #46b0f3;
+    transition: 0.3s ease-in-out all;
+}
+
+.comment-list {
+    list-style-type: none;
+    padding: 0;
+    padding: 0px 5vw;
+}
+
+.comment {
+    display: flex;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.comment-avatar img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.comment-content {
+    flex: 1;
+}
+
+.comment-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.comment-author {
+    font-weight: bold;
+}
+
+.comment-date {
+    color: #888;
+}
+
+.comment-text {
+    margin: 0;
+}

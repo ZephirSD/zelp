@@ -5,33 +5,82 @@
 {% block body %}
 {{ include('component/header.html.twig') }}
 <a href="{{ path('app_home') }}">Retour</a>
-<div class="wrapper_resto">
-	<div class="case_product">
-		<div class="product-wrap">
-			<div class="product-shot">
-				<img src="https://s3-us-west-2.amazonaws.com/hypebeast-wordpress/image/2009/10/smart-magazine-stussy-stock-link-tshirt-3.jpg" alt="" />
-			</div>
-		</div>
-	</div>
-  
-	<div class="col-1-2">
-		<div class="product-info">
-			<h2>{{ restaurant.name }}</h2>
-			<div class="desc">
-                <h3>Description:</h3>
-				{{ restaurant.description }}
-			</div>
-            <div>
-                <h3>Ville:</h3>
-                {{ ville[0].name }}
-            <div>
-		</div>
-	</div>
-</div>
-{# </div>
-<div>
-    <h1>Avis</h1>
-</div> #}
+<section>
+    <div class="wrapper_resto">
+        <div class="case_product">
+            <div class="product-wrap">
+                <div class="product-shot">
+                    <img src="https://s3-us-west-2.amazonaws.com/hypebeast-wordpress/image/2009/10/smart-magazine-stussy-stock-link-tshirt-3.jpg" alt="" />
+                </div>
+            </div>
+        </div>
+    
+        <div class="col-1-2">
+            <div class="product-info">
+                <h2>{{ restaurant.name }}</h2>
+                <div class="desc">
+                    <h3>Description:</h3>
+                    {{ restaurant.description }}
+                </div>
+                <div>
+                    <h3>Ville:</h3>
+                    {{ ville[0].name }}
+                <div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="case_avis">
+    {% if is_granted('ROLE_USER') %}
+    <form id="form_avis">
+        <label for="rating" class="rating">Note:</label>
+        <select id="rating" name="rating" required>
+            <option value="">Sélectionner une note</option>
+            <option value="5">5 étoiles</option>
+            <option value="4">4 étoiles</option>
+            <option value="3">3 étoiles</option>
+            <option value="2">2 étoiles</option>
+            <option value="1">1 étoile</option>
+        </select>
+        <label for="comment" class="comment_label">Commentaire:</label>
+        <textarea id="comment" name="comment" rows="4" required></textarea>
+        <div class="case_btn_avis">
+            <button type="submit" class="btn_avis">Envoyer l'avis</button>
+        </div>
+    </form>
+    {% else %}
+        <p><a href="{{ path('app_login') }}">Connectez-vous</a> pour donner un avis</p>
+    {% endif %}
+    <h1>Avis&nbsp;<span class="nombre_avis">7</span></h1>
+    <ul class="comment-list">
+      <li class="comment">
+        <div class="comment-avatar">
+          <img src="avatar1.jpg" alt="Avatar">
+        </div>
+        <div class="comment-content">
+          <div class="comment-info">
+            <span class="comment-author">John Doe</span>
+            <span class="comment-date">15 juillet 2023</span>
+          </div>
+          <p class="comment-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin auctor varius ex, a suscipit sapien aliquet vitae.</p>
+        </div>
+      </li>
+      <li class="comment">
+        <div class="comment-avatar">
+          <img src="avatar2.jpg" alt="Avatar">
+        </div>
+        <div class="comment-content">
+          <div class="comment-info">
+            <span class="comment-author">Jane Smith</span>
+            <span class="comment-date">20 juillet 2023</span>
+          </div>
+          <p class="comment-text">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+        </div>
+      </li>
+      <!-- Ajoutez d'autres commentaires ici -->
+    </ul>
+</section>
+
     {# <h1>Restaurant</h1>
 
     <table class="table">
