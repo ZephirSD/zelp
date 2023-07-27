@@ -5,77 +5,46 @@
 {% block body %}
     {{ include('component/header.html.twig') }}
     <h1>Listes de vos restaurants</h1>
-        <a href="{{ path('app_restaurant_new') }}" class="button_ajout">Ajouter</a> 
-        <section class="grid_restaurant">
-            {% for restaurant in restaurants %}
-            <div class="container page-wrapper">
-                    <div class="page-inner">
-                        <div class="row">
-                            <div class="el-wrapper">
-                                <div class="box-up">
-                                <img class="img" src="" alt="">
-                                <div class="img-info">
-                                    <div class="info-inner">
-                                    <span class="p-name">{{ restaurant.name }}</span>
-                                    <span class="p_note">4/5</span>
-                                    </div>
-                                </div>
-                                </div>
-                                <div class="box-down">
-                                    <div class="h-bg">
-                                        <div class="h-bg-inner"></div>
-                                    </div>
-                                    <a class="cart" href="{{ path('app_restaurant_show', {'id': restaurant.id}) }}">
-                                        <span class="voir_restaurant">
-                                        <span class="txt">Voir le restaurant</span>
-                                        </span>
-                                    </a>
-                                </div> 
-                                <div class="box-down">
-                                    <div class="h-bg">
-                                        <div class="h-bg-inner"></div>
-                                    </div>
-                                    <a class="cart" href="{{ path('app_restaurant_edit', {'id': restaurant.id}) }}">
-                                        <span class="voir_restaurant">
-                                        <span class="txt">Modifier</span>
-                                        </span>
-                                    </a>
-                                </div>
+    <a href="{{ path('app_restaurant_new') }}" class="button_ajout">Ajouter</a> 
+    <section class="grid_restaurant">
+        {% for restaurant in restaurants %}
+        <div class="container page-wrapper">
+            <div class="page-inner">
+                <div class="row">
+                    <div class="el-wrapper">
+                        <div class="box-up">
+                        <img class="img" src="" alt="">
+                        <div class="img-info">
+                            <div class="info-inner">
+                            <span class="p-name">{{ restaurant.name }}</span>
+                            <span class="p_note">4/5</span>
                             </div>
+                        </div>
+                        </div>
+                        <div class="box-down">
+                            <div class="h-bg">
+                                <div class="h-bg-inner"></div>
+                            </div>
+                            <a class="cart" href="{{ path('app_restaurant_show', {'id': restaurant.id}) }}">
+                                <span class="voir_restaurant">
+                                <span class="txt">Voir le restaurant</span>
+                                </span>
+                            </a>
+                        </div> 
+                        <div class="box-down">
+                            <div class="h-bg">
+                                <div class="h-bg-inner" style="background-color: #00ad68"></div>
+                            </div>
+                            <a class="cart" href="{{ path('app_restaurant_edit', {'id': restaurant.id}) }}">
+                                <span class="voir_restaurant">
+                                <span class="txt">Modifier</span>
+                                </span>
+                            </a>
                         </div>
                     </div>
                 </div>
-            {% endfor %}
-        </section>
-    {# <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Created_at</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for restaurant in restaurants %}
-            <tr>
-                <td>{{ restaurant.id }}</td>
-                <td>{{ restaurant.name }}</td>
-                <td>{{ restaurant.description }}</td>
-                <td>{{ restaurant.createdAt ? restaurant.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('app_restaurant_show', {'id': restaurant.id}) }}">show</a>
-                    <a href="{{ path('app_restaurant_edit', {'id': restaurant.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
+            </div>
+        </div>
         {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_restaurant_new') }}">Create new</a> #}
+    </section>
 {% endblock %}
