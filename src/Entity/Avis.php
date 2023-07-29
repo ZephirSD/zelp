@@ -69,11 +69,6 @@ class Avis
         return $this;
     }
 
-    public function __toString()
-    {
-        return $this->created_at->format('d/m/Y');
-    }
-
     public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->created_at;
