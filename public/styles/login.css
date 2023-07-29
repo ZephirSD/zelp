@@ -3,10 +3,10 @@
     line-height: 1.7;
     color: #666;
     margin: 0;
-    transition: all .4s;
     -webkit-transition: all .4s;
     -o-transition: all .4s;
-    -moz-transition: all .4s
+    -moz-transition: all .4s;
+    transition: all .4s;
 }
 
 .limiter > a:focus {
