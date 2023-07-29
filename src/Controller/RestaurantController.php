@@ -2,9 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Avis;
+use App\Form\AvisType;
 use Symfony\Bundle\SecurityBundle\Security;
 use App\Entity\Restaurant;
 use App\Form\RestaurantType;
+use App\Repository\AvisRepository;
 use App\Repository\RestaurantRepository;
 use App\Repository\UserRepository;
 use App\Repository\VilleRepository;
@@ -20,10 +23,9 @@ class RestaurantController extends AbstractController
     #[Route('/', name: 'app_restaurant_index', methods: ['GET'])]
     public function index(RestaurantRepository $restaurantRepository, UserRepository $userRepository, Request $request): Response
     {
-        ;
+        $user = $userRepository->findUserByEmail($request->getSession()->get(Security::LAST_USERNAME))[0];
         return $this->render('restaurant/index.html.twig', [
-            // 'restaurants' => $restaurantRepository->findRestaurantByIdUser($userRepository->findUserByEmail($request->getSession()->get(Security::LAST_USERNAME))[0]['id']),
-            'restaurants' => $restaurantRepository->findAll(),
+            'restaurants' => $restaurantRepository->findRestaurantByIdUser($user->getId()),
         ]);
     }
 
@@ -48,12 +50,24 @@ class RestaurantController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_restaurant_show', methods: ['GET'])]
-    public function show(Restaurant $restaurant, VilleRepository $villeRepository ): Response
+    #[Route('/{id}', name: 'app_restaurant_show', methods: ['GET', 'POST'])]
+    public function show(Request $request, Restaurant $restaurant, VilleRepository $villeRepository, RestaurantRepository $restaurantRepository, AvisRepository $avisRepository, EntityManagerInterface $entityManager): Response
     {
+        $avis = new Avis();
+        $formAvis = $this->createForm(AvisType::class, $avis);
+        $formAvis->handleRequest($request);
+
+        if ($formAvis->isSubmitted() && $formAvis->isValid()) {
+            $avis->setRestaurant($restaurantRepository->findRestaurantById($restaurant->getId())[0]);
+            $entityManager->persist($avis);
+            $entityManager->flush();
+            return $this->redirectToRoute('app_restaurant_show', ['id' => $restaurant->getId()], Response::HTTP_SEE_OTHER);
+        }
         return $this->render('restaurant/show.html.twig', [
             'restaurant' => $restaurant,
-            'ville' => $villeRepository->findNameVille($restaurant->getVille())
+            'ville' => $villeRepository->findNameVille($restaurant->getVille()),
+            'formAvis' => $formAvis,
+            'avis' => $avisRepository->findAllRestaurantById($restaurant->getId()),
         ]);
     }
 
