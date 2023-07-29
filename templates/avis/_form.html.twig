@@ -1,0 +1,7 @@
+{{ form_start(formAvis, { 'attr': {'id': 'form_avis'} }) }}
+    {{ form_row(formAvis.rating, {label: 'Note', 'attr': {'id': 'rating' }}) }}
+    {{ form_row(formAvis.message, {label: 'Commentaire', 'attr': {'id': 'comment'} }) }}
+    <div class="case_btn_avis">
+        <button type="submit" class="btn_avis">{{ button_label|default('Envoyer votre avis') }}</button>
+    </div>
+{{ form_end(formAvis) }}

@@ -1,0 +1,27 @@
+<h1><span class="nombre_avis">{{avis|length}}</span>&nbsp;Avis</h1>
+{% if avis|length > 0 %}
+    <ul class="comment-list">
+    {% for avi in avis %}
+        <li class="comment">
+            <div class="comment-avatar">
+            <img src="avatar1.jpg" alt="Avatar">
+            </div>
+            <div class="comment-content">
+            <div class="comment-info">
+                    <span class="comment-author">
+                        {% for i in 1..avi.rating %}
+                            <i class="fa-solid fa-star"></i>
+                        {% endfor %}
+                    </span>
+                <span class="comment-date">{{avi}}</span>
+            </div>
+            <p class="comment-text">{{avi.message}}</p>
+            </div>
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <div>
+        <p>Aucun avis sur le restaurant</p>
+    </div>
+{% endif %}

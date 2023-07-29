@@ -36,6 +36,7 @@ class Avis
 
     public function __construct()
     {
+        $this->setCreatedAt(new \DateTime());
         $this->avis_id = new ArrayCollection();
     }
 
@@ -66,6 +67,11 @@ class Avis
         $this->rating = $rating;
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->created_at->format('d/m/Y');
     }
 
     public function getCreatedAt(): ?\DateTimeInterface
