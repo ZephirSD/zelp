@@ -75,7 +75,12 @@ Nous avons deux utilsateurs de tests avec comme rôle `ROLE_USER` (pour le clien
 - [x] Faire le style de la page d’Inscription et de Connexion
 - [x] Réalisation du style pour la partie Restaurant
 - [ ] Faire un menu déroulant pour le menu Compte
-- [ ] Réalisation du style pour les Avis
-- [ ] Mise en place du système de commmentaire pour chaque restaurant
+- [x] Réalisation du style pour les Avis
+- [x] Mise en place du système de commmentaire pour chaque restaurant
 - [ ] Création du responsive pour le site
+- [x] Création des envois des avis
+- [ ] Uplaod de l'image du restaurant
+- [ ] Envoi des reéponses des avis par les restauranteurs
+- [ ] Réalisation de la partie `Moderateur`
+- [ ] Ajout de la note moyenne des avis par restaurants
 - [x] Résoudre le problème de `ville = null` lors de l'enregistrement d'un restaurant
