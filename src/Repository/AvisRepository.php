@@ -21,6 +21,14 @@ class AvisRepository extends ServiceEntityRepository
         parent::__construct($registry, Avis::class);
     }
 
+    public function findAllAvisById(int $idResto)
+    {
+        $query = $this->createQueryBuilder('u')
+            ->where('u.restaurant = :val')
+            ->setParameter('val', $idResto);
+        return $query->getQuery()->getResult();
+    }
+
 //    /**
 //     * @return Avis[] Returns an array of Avis objects
 //     */
