@@ -67,7 +67,7 @@ class RestaurantController extends AbstractController
             'restaurant' => $restaurant,
             'ville' => $villeRepository->findNameVille($restaurant->getVille()),
             'formAvis' => $formAvis,
-            'avis' => $avisRepository->findAllRestaurantById($restaurant->getId()),
+            'avis' => $avisRepository->findAllAvisById($restaurant->getId()),
         ]);
     }
 
