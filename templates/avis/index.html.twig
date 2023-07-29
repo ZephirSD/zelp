@@ -13,9 +13,12 @@
                             <i class="fa-solid fa-star"></i>
                         {% endfor %}
                     </span>
-                <span class="comment-date">{{avi}}</span>
+                <span class="comment-date">{{avi.createdAt|date('d/m/Y')}}</span>
             </div>
             <p class="comment-text">{{avi.message}}</p>
+            {% if is_granted('ROLE_RESTO') %}
+                <a class="link_repondre"><i class="fa-solid fa-turn-up"></i>Répondre</a>
+            {% endif %}
             </div>
         </li>
     {% endfor %}
