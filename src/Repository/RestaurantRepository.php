@@ -24,11 +24,26 @@ class RestaurantRepository extends ServiceEntityRepository
     public function findRestaurantByIdUser(int $idUser)
     {
         $query = $this->createQueryBuilder('u')
-            ->where('u.user_id = :val')
+            ->where('u.user = :val')
             ->setParameter('val', $idUser);
         return $query->getQuery()->getResult();
     }
 
+    public function findAllRestaurantById(int $idResto)
+    {
+        $query = $this->createQueryBuilder('u')
+            ->where('u.restaurant = :val')
+            ->setParameter('val', $idResto);
+        return $query->getQuery()->getResult();
+    }
+
+    public function findRestaurantById(?int $id_restaurant)
+    {
+        $query = $this->createQueryBuilder('u')
+            ->where('u.id = :val')
+            ->setParameter('val', $id_restaurant);
+        return $query->getQuery()->getResult();
+    }
 
 //    /**
 //     * @return Restaurant[] Returns an array of Restaurant objects
