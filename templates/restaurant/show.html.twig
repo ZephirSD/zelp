@@ -33,53 +33,9 @@
 <section class="case_avis">
     {% if is_granted('ROLE_USER') %}
         {{ include('avis/_form.html.twig') }}
-        {# <form id="form_avis">
-            <label for="rating" class="rating">Note:</label>
-            <select id="rating" name="rating" required>
-                <option value="">Sélectionner une note</option>
-                <option value="5">5 étoiles</option>
-                <option value="4">4 étoiles</option>
-                <option value="3">3 étoiles</option>
-                <option value="2">2 étoiles</option>
-                <option value="1">1 étoile</option>
-            </select>
-            <label for="comment" class="comment_label">Commentaire:</label>
-            <textarea id="comment" name="comment" rows="4" required></textarea>
-            <div class="case_btn_avis">
-                <button type="submit" class="btn_avis">Envoyer l'avis</button>
-            </div>
-        </form> #}
     {% else %}
         <p class="phrase_avis"><a href="{{ path('app_login') }}">Connectez-vous</a> pour donner un avis</p>
     {% endif %}
     {{ include('avis/index.html.twig') }}
-    {# <h1>Avis&nbsp;<span class="nombre_avis">7</span></h1>
-    <ul class="comment-list">
-      <li class="comment">
-        <div class="comment-avatar">
-          <img src="avatar1.jpg" alt="Avatar">
-        </div>
-        <div class="comment-content">
-          <div class="comment-info">
-            <span class="comment-author">John Doe</span>
-            <span class="comment-date">15 juillet 2023</span>
-          </div>
-          <p class="comment-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin auctor varius ex, a suscipit sapien aliquet vitae.</p>
-        </div>
-      </li>
-      <li class="comment">
-        <div class="comment-avatar">
-          <img src="avatar2.jpg" alt="Avatar">
-        </div>
-        <div class="comment-content">
-          <div class="comment-info">
-            <span class="comment-author">Jane Smith</span>
-            <span class="comment-date">20 juillet 2023</span>
-          </div>
-          <p class="comment-text">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
-        </div>
-      </li>
-      <!-- Ajoutez d'autres commentaires ici -->
-    </ul> #}
 </section>
 {% endblock %}
