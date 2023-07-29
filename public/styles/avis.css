@@ -3,27 +3,32 @@ form#form_avis {
     flex-direction: column;
     padding: 0px 15vw;
 }
+
+form#form_avis div{
+    display: flex;
+    flex-direction: column;
+}
   
-label.rating, label.comment_label {
+form#form_avis div label {
     margin-top: 10px;
     font-weight: bold;
 }
 
-select#rating, textarea#comment {
+select#avis_rating, textarea#avis_message {
     padding: 10px;
     margin: 5px 0;
     border: 1px solid #ccc;
     border-radius: 3px;
 }
 
-textarea#comment {
+textarea#avis_message {
     resize: vertical;
 }
 
 div.case_btn_avis{
     position: relative;
-    display: flex;
-    justify-content: flex-end;
+    justify-content: flex-end !important;
+    flex-direction: row;
 }
 
 button.btn_avis {
@@ -34,7 +39,7 @@ button.btn_avis {
     border: none;
     border-radius: 3px;
     cursor: pointer;
-    border-radius: 10px;
+    border-radius: 25px;
     transition: 0.3s ease-in-out all;
 }
 
@@ -86,4 +91,14 @@ button.btn_avis:hover {
 
 .comment-text {
     margin: 0;
+}
+
+p.phrase_avis{
+    padding: 20px 0px;
+}
+
+p.phrase_avis a{
+    color: #3f96cd;
+    text-decoration: none;
+    font-size: 16px;
 }
